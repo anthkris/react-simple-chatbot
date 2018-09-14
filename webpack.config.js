@@ -1,14 +1,14 @@
 const path = require('path');
 
 module.exports = {
-  entry: path.resolve(__dirname, 'example/main.jsx'),
+  entry: path.resolve(__dirname, 'hack-id-bot/main.js'),
   output: {
-    path: path.resolve(__dirname, 'example'),
+    path: path.resolve(__dirname, 'hack-id-bot'),
     publicPath: '/',
     filename: 'bundle.js',
   },
   devServer: {
-    contentBase: path.join(__dirname, 'example'),
+    contentBase: path.join(__dirname, 'hack-id-bot'),
     host: '0.0.0.0',
     disableHostCheck: true,
   },

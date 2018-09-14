@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Example from './components/Example';
+import XAPIBot  from './components/ChatBot';
 
 render(
-  <Example />,
+  <XAPIBot />,
   document.getElementById('root'),
 );
