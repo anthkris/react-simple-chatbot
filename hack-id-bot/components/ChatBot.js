@@ -61,7 +61,7 @@ class XAPIBot extends Component {
         steps={[
           {
             id: '1',
-            message: 'What is your name?',
+            message: 'Howdy! It\'s ID Bot here. What\'s your name?',
             trigger: 'name',
           },
           {
@@ -71,20 +71,53 @@ class XAPIBot extends Component {
           },
           {
             id: '3',
-            message: 'Hi {previousValue}! What is your gender?',
-            trigger: 'gender',
+            message: 'Nice to meet you, {previousValue}! So, I\'m assuming that you\'d like to learn more about xAPI?',
+            trigger: 'learnMore'
           },
           {
-            id: 'gender',
+            id: 'learnMore',
             options: [
-              { value: 'male', label: 'Male', trigger: '5' },
-              { value: 'female', label: 'Female', trigger: '5' },
-            ],
+              { value: 'Yup', label: 'Yes', trigger: 'yesLearn' },
+              { value: 'Nope', label: 'No', trigger: 'noLearn' }
+            ]
           },
           {
-            id: '5',
-            message: 'How old are you?',
-            trigger: 'age',
+            id: 'yesLearn',
+            message: 'A\.Maz\.Ing! So, where would you like to start\?',
+            trigger: 'whatToLearn'
+          },
+          {
+            id: 'noLearn',
+            message: 'Welp... too bad, friend. Helping folks find xAPI resources is kinda my whole thing.',
+            trigger: 'learnAnyway',
+          },
+          {
+            id: 'learnAnyway',
+            message: 'So, where would you like to start\?',
+            trigger: 'whatToLearn'
+          },
+          {
+            id: 'whatToLearn',
+            options: [
+              { value: 'What is xAPI?', label: 'What is xAPI?', trigger: 'definition' },
+              { value: 'Where can I learn about xAPI?', label: 'Where can I learn about xAPI?', trigger: 'resources' },
+              { value: 'Which tools are xAPI-enabled?', label: 'Which tools are xAPI-enabled?', trigger: 'tools' }
+            ]
+          },
+          {
+            id: 'definition',
+            message: 'Well, xAPI is a standard that\'s all about data interoperability, a way to collect data about experiences, online and offline. The promise of xAPI is that, as an instructional designer, you could gain a more wholistic view of learners because you could get data about learners from a variety of experiences.',
+            trigger: 'learnMore',
+          },
+          {
+            id: 'resources',
+            message: 'Nice to meet you, {previousValue}! So, I\'m assuming that you\'d like to learn more about xAPI?',
+            trigger: 'learnMore',
+          },
+          {
+            id: 'tools',
+            message: 'Nice to meet you, {previousValue}! So, I\'m assuming that you\'d like to learn more about xAPI?',
+            trigger: 'learnMore',
           },
           {
             id: 'age',
@@ -157,7 +190,7 @@ class XAPIBot extends Component {
             id: 'end-message',
             message: 'Thanks! Your data was submitted successfully!',
             end: true,
-          },
+          }
         ]}
       />
     );
