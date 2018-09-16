@@ -13,9 +13,10 @@ const ChatBotContainer = styled.div`
   right: ${({ floating, floatingStyle }) => floating ? floatingStyle.right || '32px' : 'initial'};
   left: ${({ floating, floatingStyle }) => floating ? floatingStyle.left || 'initial' : 'initial'};
   width: ${({ width }) => width};
+  max-width: 640px;
   height: ${({ height }) => height};
   z-index: 999;
-  margin: 0 auto;
+  margin: 40px auto;
   transform: ${({ opened }) => opened ? 'scale(1)' : 'scale(0)'};
   transform-origin: ${({ floatingStyle }) => floatingStyle.transformOrigin || 'bottom right'};
   transition: transform .3s ease;
@@ -25,6 +26,7 @@ const ChatBotContainer = styled.div`
     bottom: 0 !important;
     left: initial !important;
     height: 100%;
+    margin: 0;
     right: 0 !important;
     top: initial !important;
     width: 100%;

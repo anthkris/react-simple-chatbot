@@ -74,17 +74,21 @@
     "sinon": "^2.3.5",
     "styled-components": "^2.4.1",
     "uglifyjs-webpack-plugin": "^0.4.6",
-    "webpack": "^3.2.0",
-    "webpack-bundle-analyzer": "^2.13.1",
-    "webpack-dev-server": "^2.5.1"
+    "webpack": "^4.19.0",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.8"
   },
   "dependencies": {
     "circular-json": "^0.3.1",
+    "css-loader": "^1.0.0",
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
     "random-id": "0.0.2",
     "react": "^16.4.1",
-    "react-dom": "^16.4.1"
+    "react-dom": "^16.4.1",
+    "react-microlink": "^2.2.4",
+    "style-loader": "^0.23.0",
+    "tincanjs": "^0.50.0"
   },
   "peerDependencies": {
     "styled-components": ">= 2.0.0",
