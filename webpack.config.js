@@ -1,4 +1,5 @@
 const path = require('path');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: path.resolve(__dirname, 'hack-id-bot/main.js'),
@@ -13,9 +14,13 @@ module.exports = {
     disableHostCheck: true,
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.html'],
   },
-  plugins: [],
+  plugins: [
+     new HTMLWebpackPlugin({
+      template: 'hack-id-bot/index.html'
+    })
+  ],
   devtool: 'source-map',
   module: {
     rules: [

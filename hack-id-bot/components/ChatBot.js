@@ -76,15 +76,18 @@ class XAPIBot extends Component {
             id: 'niceToMeet',
             message: 'Nice to meet you, {previousValue}! Listen, I also need an email to get this party started.',
             trigger: 'beFake',
+            delay: 1200
           },
           {
             id: 'beFake',
             message: 'It can even be a fake email. I won\'t tell anybody.🤫',
             trigger: 'email',
+            delay: 1200
           },
           {
             id: 'email',
             user: true,
+            placeholder: 'Type a valid email address ...',
             trigger: '3',
           },
           {
@@ -96,23 +99,26 @@ class XAPIBot extends Component {
             id: 'learnMore',
             options: [
               { value: 'Yup', label: 'Yes', trigger: 'yesLearn' },
-              { value: 'Nope', label: 'No', trigger: 'noLearn' }
+              { value: 'Nope', label: 'Nope', trigger: 'noLearn' }
             ]
           },
           {
             id: 'yesLearn',
             message: 'A\.Maz\.Ing! So, where would you like to start\?',
-            trigger: 'whatToLearn'
+            trigger: 'whatToLearn',
+            delay: 1400
           },
           {
             id: 'noLearn',
             message: 'Welp... too bad, friend. Helping folks find xAPI resources is kinda my whole thing.',
             trigger: 'learnAnyway',
+            delay: 1400
           },
           {
             id: 'learnAnyway',
             message: 'So, where would you like to start\?',
-            trigger: 'whatToLearn'
+            trigger: 'whatToLearn',
+            delay: 1400
           },
           {
             id: 'try-again',
@@ -130,8 +136,14 @@ class XAPIBot extends Component {
           },
           {
             id: 'definition',
-            message: 'Well, xAPI is a standard that\'s all about data interoperability, a way to collect data about experiences, online and offline. The promise of xAPI is that, as an instructional designer, you could gain a more wholistic view of learners because you could get data about learners from a variety of experiences.',
+            message: 'Well, xAPI is a standard that\'s all about data interoperability and a way to collect data about experiences, online and offline.',
+            trigger: 'definition2',
+          },
+          {
+            id: 'definition2',
+            message: 'The promise of xAPI is that, as an instructional designer, you could gain a more holistic view of learners because you could get data about learners from a variety of experiences.',
             trigger: 'tellMore',
+            delay: 1400
           },
           {
             id: 'tellMore',
@@ -143,11 +155,13 @@ class XAPIBot extends Component {
             id: 'definitionMore',
             message: 'Probably the hardest and most important part of xAPI for you as an instructional designer is learning the skills to plan out what data you want to capture, including structuring xAPI statements.',
             trigger: 'id-xapi-responsibilities',
+            delay: 1400
           },
           {
             id: 'id-xapi-responsibilities',
             message: 'There may be a few new skills you need to pick up, such as understanding JSON (javascript object notation) and thinking more about data: how to get at it, how to get answers to your questions, and more.',
             trigger: 'id-resources',
+            delay: 1400
           },
           {
             id: 'id-resources',
@@ -165,14 +179,102 @@ class XAPIBot extends Component {
           },
           {
             id: 'id-link-one',
-            component: <MicrolinkCard className='link-preview' url='http://xapiquarterly.com/2015/09/practicing-instructional-design-with-xapi-veterinary-technician-certification/' target='_blank' image='screenshot' data={{title: 'Practicing ID with xAPI'}} screenshot />,
+            component: <MicrolinkCard className='link-preview' prerender="auto" data={{title: 'Practicing ID with xAPI'}} url='http://xapiquarterly.com/2015/09/practicing-instructional-design-with-xapi-veterinary-technician-certification/' target='_blank' />,
             asMessage: false,
-            trigger: 'learnMore',
+            trigger: 'id-link-two',
+            delay: 1400
+          },
+          {
+            id: 'id-link-two',
+            component: <MicrolinkCard className='link-preview' prerender="auto" data={{title: 'What does an ID need to know?'}} url='https://www.slideshare.net/torrancelearning/xapi-what-does-an-instructional-designer-need-to-know' target='_blank' />,
+            asMessage: false,
+            trigger: 'id-link-three',
+            delay: 1400
+          },
+          {
+            id: 'id-link-three',
+            component: <MicrolinkCard className='link-preview' prerender="auto" data={{title: 'What does xAPI mean for IDs?'}} url='https://www.sproutlabs.com.au/blog/what-does-xapi-mean-for-instructional-designers/' target='_blank' />,
+            asMessage: false,
+            trigger: 'id-link-four',
+            delay: 1400
+          },
+          {
+            id: 'id-link-four',
+            component: <MicrolinkCard className='link-preview' prerender="auto" data={{title: 'Learning Design Transformed'}} url='https://xapi.com/learning-design-transformed/' target='_blank'/>,
+            asMessage: false,
+            trigger: 'anyMore',
+            delay: 1400
+          },
+          {
+            id: 'anyMore',
+            message: 'Be sure to check out those resources. Got more questions?',
+            trigger: 'anyMoreChoice',
+            delay: 1400
+          },
+          {
+            id: 'anyMoreChoice',
+            options: [
+              { value: 'Yup', label: 'Yes', trigger: 'try-again' },
+              { value: 'Nope', label: 'Nope', trigger: 'sure-quit' }
+            ]
           },
           {
             id: 'resources',
-            message: 'Nice to meet you, {previousValue}! So, I\'m assuming that you\'d like to learn more about xAPI?',
-            trigger: 'learnMore',
+            message: 'Oooh, there\'s a lot of folks writing about xAPI. Would you like to look at beginner resources or more intermediate and advanced?',
+            trigger: 'beginnerOrAdvanced',
+            delay: 1200
+          },
+          {
+            id: 'beginnerOrAdvanced',
+            options: [
+              { value: 'Beginner', label: 'Beginner', trigger: 'beginnerResources' },
+              { value: 'Advanced', label: 'Advanced', trigger: 'advancedResources' }
+            ]
+          },
+          {
+            id: 'beginnerResources',
+            message: 'Okay! Here are a few good resources to get you started:',
+            trigger: 'beginner-resources-one',
+          },
+          {
+            id: 'beginner-resources-one',
+            component: <MicrolinkCard className='link-preview' prerender="auto" data={{title: 'Learn xAPI'}} url='https://learnxapi.com/' target='_blank' />,
+            asMessage: false,
+            trigger: 'beginner-resources-two',
+            delay: 1400
+          },
+          {
+            id: 'beginner-resources-two',
+            component: <MicrolinkCard className='link-preview' prerender="auto" data={{title: 'xAPI Cohort'}} url='http://www.torrancelearning.com/xapi-cohort/' target='_blank' />,
+            asMessage: false,
+            trigger: 'beginner-resources-three',
+            delay: 1400
+          },
+          {
+            id: 'beginner-resources-three',
+            component: <MicrolinkCard className='link-preview' prerender="auto" data={{title: 'xAPI Intro'}} url='https://www.yetanalytics.com/xapi-an-introductory-guide-ebook' target='_blank' />,
+            asMessage: false,
+            trigger: 'anyMore',
+            delay: 1400
+          },
+          {
+            id: 'advancedResources',
+            message: 'Since you\'re a mover and a shaker 👨‍💻👩‍💻, try these resources on for size:',
+            trigger: 'advanced-resources-one',
+          },
+          {
+            id: 'advanced-resources-one',
+            component: <MicrolinkCard className='link-preview' prerender="auto" data={{title: 'Anatomy of an xAPI Statement'}} url='https://xapi.com/ebook/' target='_blank' />,
+            asMessage: false,
+            trigger: 'advanced-resources-two',
+            delay: 1400
+          },
+          {
+            id: 'advanced-resources-two',
+            component: <MicrolinkCard className='link-preview' prerender="auto" data={{title: 'Run your own LRS'}} url='https://www.ht2labs.com/resources/free-lrs-mooc/#.WdPCsRNSzGI' target='_blank' />,
+            asMessage: false,
+            trigger: 'anyMore',
+            delay: 1400
           },
           {
             id: 'tools',
@@ -260,7 +362,7 @@ class XAPIBot extends Component {
           },
           {
             id: 'done',
-            message: 'Thanks! Your data was submitted successfully!',
+            message: 'Thanks! Your data was submitted successfully! 👋🏽',
             end: true,
           }
         ]}
