@@ -7,13 +7,10 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: path.resolve(__dirname, 'hack-id-bot/main.js'),
-  externals: { 'styled-components': 'styled-components' },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'react-simple-chatbot.js',
     publicPath: '/',
-    library: 'ReactSimpleChatbot',
-    libraryTarget: 'umd',
+    filename: 'bundle.js',
   },
   resolve: {
     extensions: ['.js', '.jsx', '.html'],

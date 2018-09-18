@@ -4,58 +4,6 @@ import MicrolinkCard from 'react-microlink';
 import ChatBot from '../../lib/index';
 import '../styles/index.css';
 
-class Review extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      name: '',
-      gender: '',
-      age: '',
-    };
-  }
-
-  componentWillMount() {
-    const { steps } = this.props;
-    const { name, gender, age } = steps;
-
-    this.setState({ name, gender, age });
-  }
-
-  render() {
-    const { name, gender, age } = this.state;
-    return (
-      <div style={{ width: '100%' }}>
-        <h3>Summary</h3>
-        <table>
-          <tbody>
-            <tr>
-              <td>Name</td>
-              <td>{name.value}</td>
-            </tr>
-            <tr>
-              <td>Gender</td>
-              <td>{gender.value}</td>
-            </tr>
-            <tr>
-              <td>Age</td>
-              <td>{age.value}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    );
-  }
-}
-
-Review.propTypes = {
-  steps: PropTypes.object,
-};
-
-Review.defaultProps = {
-  steps: undefined,
-};
-
 class XAPIBot extends Component {
   render() {
     return (
@@ -63,7 +11,7 @@ class XAPIBot extends Component {
         steps={[
           {
             id: '1',
-            message: 'Howdy! It\'s ID Bot here. What\'s your name?',
+            message: 'Howdy! It\'s xAPIBot here. What\'s your name?',
             trigger: 'name'
           },
           {
@@ -252,6 +200,13 @@ class XAPIBot extends Component {
           },
           {
             id: 'beginner-resources-three',
+            component: <MicrolinkCard className='link-preview' prerender="auto" data={{title: 'Mel\'s Big List of xAPI Resources'}} url='http://melslearninglab.com/2018/07/02/big-xapi-list/' target='_blank' />,
+            asMessage: false,
+            trigger: 'beginner-resources-four',
+            delay: 1400
+          },
+          {
+            id: 'beginner-resources-four',
             component: <MicrolinkCard className='link-preview' prerender="auto" data={{title: 'xAPI Intro'}} url='https://www.yetanalytics.com/xapi-an-introductory-guide-ebook' target='_blank' />,
             asMessage: false,
             trigger: 'anyMore',
@@ -278,75 +233,54 @@ class XAPIBot extends Component {
           },
           {
             id: 'tools',
-            message: 'Nice to meet you, {previousValue}! So, I\'m assuming that you\'d like to learn more about xAPI?',
-            trigger: 'learnMore',
+            message: 'This is a great question! There are lots of ways to tackle it. Are you looking for a big list of tools that have adopted xAPI or more of a \"state of the elearning authoring tools\"?',
+            trigger: 'allToolsOrAuthoringTools',
+            delay: 1400
           },
           {
-            id: 'age',
-            user: true,
-            trigger: '7',
-            validator: (value) => {
-              if (isNaN(value)) {
-                return 'value must be a number';
-              } else if (value < 0) {
-                return 'value must be positive';
-              } else if (value > 120) {
-                return `${value}? Come on!`;
-              }
-
-              return true;
-            },
-          },
-          {
-            id: '7',
-            message: 'Great! Check out your summary',
-            trigger: 'review',
-          },
-          {
-            id: 'review',
-            component: <Review />,
-            asMessage: true,
-            trigger: 'update',
-          },
-          {
-            id: 'update',
-            message: 'Would you like to update some field?',
-            trigger: 'update-question',
-          },
-          {
-            id: 'update-question',
+            id: 'allToolsOrAuthoringTools',
             options: [
-              { value: 'yes', label: 'Yes', trigger: 'update-yes' },
-              { value: 'no', label: 'No', trigger: 'done' },
-            ],
+              { value: 'Gimme all the Tools!', label: 'Gimme all the Tools! 🛠', trigger: 'allTools' },
+              { value: 'Authoring tools FTW!', label: 'Authoring tools FTW! 📝', trigger: 'authoringTools' }
+            ]
           },
           {
-            id: 'update-yes',
-            message: 'What field would you like to update?',
-            trigger: 'update-fields',
+            id: 'allTools',
+            message: 'Tools for every shape and size! 🔧🔨⚙️ I recommend checking out these links:',
+            trigger: 'tool-resources-one',
           },
           {
-            id: 'update-fields',
-            options: [
-              { value: 'name', label: 'Name', trigger: 'update-name' },
-              { value: 'gender', label: 'Gender', trigger: 'update-gender' },
-              { value: 'age', label: 'Age', trigger: 'update-age' },
-            ],
+            id: 'tool-resources-one',
+            component: <MicrolinkCard className='link-preview' prerender="auto" data={{title: 'ADL xAPI Adopters List'}} url='https://adopters.adlnet.gov/adopters/0' target='_blank' />,
+            asMessage: false,
+            trigger: 'tool-resources-two',
+            delay: 1400
           },
           {
-            id: 'update-name',
-            update: 'name',
-            trigger: '7',
+            id: 'tool-resources-two',
+            component: <MicrolinkCard className='link-preview' prerender="auto" data={{title: 'xAPI.com Adopters List'}} url='https://xapi.com/adopters/' target='_blank' />,
+            asMessage: false,
+            trigger: 'tool-resources-one',
+            delay: 1400
           },
           {
-            id: 'update-gender',
-            update: 'gender',
-            trigger: '7',
+            id: 'authoringTools',
+            message: 'Interested in authoring tools? I gotcha covered. I recommend checking out the xAPI Out of the Box article on Learning Solutions Mag. This work is taken up by the xAPI Cohort community regularly to keep everyone up-to-date on changes in the way popular authoring tools handle xAPI:',
+            trigger: 'authoring-tool-resources-one',
+            delay: 1400
           },
           {
-            id: 'update-age',
-            update: 'age',
-            trigger: '7',
+            id: 'authoring-tool-resources-one',
+            component: <MicrolinkCard className='link-preview' prerender="auto" data={{title: 'xAPI Out of the Box'}} url='https://www.learningsolutionsmag.com/articles/xapi-out-of-the-box' target='_blank' />,
+            asMessage: false,
+            trigger: 'authoringToolAnyMore',
+            delay: 1400
+          },
+          {
+            id: 'authoringToolAnyMore',
+            message: 'Be sure to check out that article. And give them a friendly hint that they need to make a website!😉 Got more questions?',
+            trigger: 'anyMoreChoice',
+            delay: 1400
           },
           {
             id: 'sure-quit',
@@ -362,7 +296,7 @@ class XAPIBot extends Component {
           },
           {
             id: 'done',
-            message: 'Thanks! Your data was submitted successfully! 👋🏽',
+            message: 'Thanks for chatting with me! And hey, you just sent a bunch of xAPI statements! How cool is that? 👋🏽',
             end: true,
           }
         ]}
