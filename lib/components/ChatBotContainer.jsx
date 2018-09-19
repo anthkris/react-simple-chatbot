@@ -16,7 +16,7 @@ const ChatBotContainer = styled.div`
   max-width: 640px;
   height: ${({ height }) => height};
   z-index: 999;
-  margin: 40px auto;
+  margin: auto;
   transform: ${({ opened }) => opened ? 'scale(1)' : 'scale(0)'};
   transform-origin: ${({ floatingStyle }) => floatingStyle.transformOrigin || 'bottom right'};
   transition: transform .3s ease;

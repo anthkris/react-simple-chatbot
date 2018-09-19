@@ -260,7 +260,7 @@ class XAPIBot extends Component {
             id: 'tool-resources-two',
             component: <MicrolinkCard className='link-preview' prerender="auto" data={{title: 'xAPI.com Adopters List'}} url='https://xapi.com/adopters/' target='_blank' />,
             asMessage: false,
-            trigger: 'tool-resources-one',
+            trigger: 'anyMore',
             delay: 1400
           },
           {
